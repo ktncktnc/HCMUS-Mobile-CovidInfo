@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">CovidNews</string>
     <string name="action_settings">Settings</string>
@@ -9,4 +10,32 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    
+    <string name="topbar_title">Covid-19</string>
+    <string name="infobar_title">Are you feeling sick?</string>
+    <string name="infobar_des">If you feel sick with any of covid-19 symptoms please call or SMS us immediately for help.</string>
+    <string name="infobar_buttons_call">Call Now</string>
+    <string name="infobar_buttons_sendsms">Send SMS</string>
+
+    <string name="prevention_title">Prevention</string>
+    <string name="prevention_avoid">Avoid close<br/>  contact</string>
+    <string name="prevention_clean">Clean your <br/>  hands often</string>
+    <string name="prevention_wear">Wear a <br/> facemask</string>
+    <string name="test_text_title">Do your own test!</string>
+    <string name="test_text_des">Follow the instructions to <br/> do your own test.</string>
+    
+    <string name="statistic_vietnam">Vietnam</string>
+    <string name="statistic_world">World</string>
+    
+    <string name="statistic_today">Today</string>
+    <string name="statistic_total">Total</string>
+    <string name="statistic_yesterday">Yesterday</string>
+    
+    <string name="numbers_affected">Affected</string>
+    <string name="numbers_death">Death</string>
+    <string name="numbers_recovered">Recover</string>
+    <string name="numbers_active">Active</string>
+    <string name="numbers_serious">Serious</string>
+
+    <string name="chart_title">Daily New Cases</string>
 </resources>
