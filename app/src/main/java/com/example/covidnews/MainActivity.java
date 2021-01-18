@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return new StatisticsFragments();
             }
-            else return new StatisticsFragments();
+            else return new Fragment();
         }
 
         @Override

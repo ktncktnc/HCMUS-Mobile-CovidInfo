@@ -30,6 +30,7 @@
     <string name="statistic_today">Today</string>
     <string name="statistic_total">Total</string>
     <string name="statistic_yesterday">Yesterday</string>
+    <string name="statistic_2daysago">2 days ago</string>
     
     <string name="numbers_affected">Affected</string>
     <string name="numbers_death">Death</string>

@@ -97,14 +97,14 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/statistic_today"
+                    android:text="@string/statistic_yesterday"
                     android:backgroundTint="@color/trans"
                     android:stateListAnimator="@null"
                     android:shadowColor="@color/trans"
                     style="@style/font_raleway_textbold"
                     android:textColor="@color/brown"
                     android:textAllCaps="false"
-                    android:id="@+id/statistic_time_today"/>
+                    android:id="@+id/statistic_time_yesterday"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
@@ -114,8 +114,8 @@
                     android:backgroundTint="@color/trans"
                     android:textColor="@color/brown"
                     android:stateListAnimator="@null"
-                    android:text="@string/statistic_yesterday"
-                    android:id="@+id/statistic_time_yesterday"/>
+                    android:text="@string/statistic_2daysago"
+                    android:id="@+id/statistic_time_2daysago"/>
 
             </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -140,8 +140,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bg_rounded_yellow"
-                        android:padding="15dp"
-                        android:layout_marginRight="15dp"
+                        android:padding="10dp"
+                        android:layout_marginRight="10dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -154,10 +154,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="333333"
-                            style="@style/font_raleway_title"
+                            android:text="0"
+                            style="@style/font_h4"
                             android:textColor="@color/white"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="25dp"
                             android:id="@+id/numbers_affected"
                             />
 
@@ -168,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bg_rounded_red"
-                        android:padding="15dp"
+                        android:padding="10dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -181,10 +181,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="333333"
-                            style="@style/font_raleway_title"
+                            android:text="0"
+                            style="@style/font_h4"
                             android:textColor="@color/white"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="25dp"
                             android:id="@+id/numbers_death"
                             />
 
@@ -198,7 +198,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@id/numbers_row1"
                     android:id="@+id/numbers_row2"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:weightSum="3"
                     >
 
@@ -207,8 +207,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bg_rounded_green"
-                        android:padding="15dp"
-                        android:layout_marginRight="15dp"
+                        android:padding="10dp"
+                        android:layout_marginRight="10dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -222,9 +222,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="333"
-                            style="@style/font_raleway_title"
+                            style="@style/font_h4"
                             android:textColor="@color/white"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="25dp"
                             android:id="@+id/numbers_recovered"
                             />
 
@@ -235,8 +235,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bg_rounded_blue"
-                        android:padding="15dp"
-                        android:layout_marginRight="15dp"
+                        android:padding="10dp"
+                        android:layout_marginRight="10dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -250,9 +250,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="33"
-                            style="@style/font_raleway_title"
+                            style="@style/font_h4"
                             android:textColor="@color/white"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="25dp"
                             android:id="@+id/numbers_active"
                             />
 
@@ -263,7 +263,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/bg_rounded_violet"
-                        android:padding="15dp"
+                        android:padding="10dp"
 
                         android:orientation="vertical">
 
@@ -278,9 +278,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="123"
-                            style="@style/font_raleway_title"
+                            style="@style/font_h4"
                             android:textColor="@color/white"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="25dp"
                             android:id="@+id/numbers_serious"
                             />
 
