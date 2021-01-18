@@ -89,6 +89,7 @@ public class StatisticsFragments extends Fragment {
 
 
         fetchData();
+        fetchDataGraph();
 
         toggleGroup.check(R.id.statistic_toggle_vietnam);
 
@@ -151,15 +152,15 @@ public class StatisticsFragments extends Fragment {
         barChart.getDescription().setEnabled(false);
         barChart.getLegend().setEnabled(false);
         barChart.getAxisRight().setEnabled(false);
-        barChart.getAxisLeft().setTypeface(raleway);
-        barChart.getAxisLeft().setTextSize((float) 12.0);
+        //barChart.getAxisLeft().setTypeface(raleway);
+        barChart.getAxisLeft().setTextSize((float) 11.0);
         barChart.getAxisLeft().setTextColor(getResources().getColor(R.color.brown));
         barChart.getAxisLeft().setGridColor(getResources().getColor(R.color.brown));
         XAxis xAxis = barChart.getXAxis();
 
         xAxis.setDrawGridLines(false);
-        xAxis.setTypeface(raleway);
-        xAxis.setTextSize((float) 12.0);
+        //xAxis.setTypeface(raleway);
+        xAxis.setTextSize((float) 11.0);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setTextColor(getResources().getColor(R.color.brown));
 
@@ -185,6 +186,80 @@ public class StatisticsFragments extends Fragment {
         button.setTextColor(getResources().getColor(R.color.brown));
     }
 
+    private void fetchDataGraph(){
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Log.d("DBG", "Fetch graph data");
+                OkHttpClient client = new OkHttpClient();
+                Request requestGraphViet = new Request.Builder().url("https://covidnewsapi.herokuapp.com/api/graph/viet").build();
+                Request requestGraphWorld = new Request.Builder().url("https://covidnewsapi.herokuapp.com/api/graph/world").build();
+                client.newCall(requestGraphViet).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        e.printStackTrace();
+                        Log.d("DBG", "Error: " + e.toString());
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        String result = response.body().string();
+                        try {
+                            dataGraph.add(new JSONObject(result));
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    fetch_graphWorld = true;
+                                    setStatistic();
+                                }
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                client.newCall(requestGraphWorld).enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                        e.printStackTrace();
+                        Log.d("DBG", "Error: " + e.toString());
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(fetch_graphViet == false && fetch_graphWorld == false) fetchDataGraph();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                        String result = response.body().string();
+                        try {
+                            dataGraph.add(new JSONObject(result));
+
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    fetch_graphViet = true;
+                                    setStatistic();
+                                }
+                            });
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+
+            }
+        };
+        executorService(runnable);
+    }
+
     private void fetchData() {
         Runnable runnable = new Runnable() {
             @Override
@@ -192,8 +267,7 @@ public class StatisticsFragments extends Fragment {
                 Log.d("DBG", "Fetching data");
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder().url("https://covidnewsapi.herokuapp.com/api/statistic/").build();
-                Request requestGraphViet = new Request.Builder().url("https://covidnewsapi.herokuapp.com/api/graph/viet").build();
-                Request requestGraphWorld = new Request.Builder().url("https://covidnewsapi.herokuapp.com/api/graph/world").build();
+
 
                 client.newCall(request).enqueue(new Callback() {
                     @Override
@@ -238,72 +312,6 @@ public class StatisticsFragments extends Fragment {
                         }
                     }
                 });
-
-                client.newCall(requestGraphWorld).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        e.printStackTrace();
-                        Log.d("DBG", "Error: " + e.toString());
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                fetchData();
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        String result = response.body().string();
-                        try {
-                            dataGraph.add(new JSONObject(result));
-
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    fetch_graphWorld = true;
-                                    setStatistic();
-                                }
-                            });
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                client.newCall(requestGraphViet).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        e.printStackTrace();
-                        Log.d("DBG", "Error: " + e.toString());
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                fetchData();
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        String result = response.body().string();
-                        try {
-                            dataGraph.add(new JSONObject(result));
-
-                            getActivity().runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    fetch_graphViet = true;
-                                    setStatistic();
-                                }
-                            });
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
             }
         };
         executorService(runnable);
@@ -327,7 +335,7 @@ public class StatisticsFragments extends Fragment {
             str = object.getString("ActiveCases");
             numberActive.setText(normalizeString(str));
             str = object.getString("CriticalCases");
-            numberSerious.setText(str.length() == 0 ? "None" : normalizeString(str));
+            numberSerious.setText(str.length() == 0 ? "No data" : normalizeString(str));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -363,7 +371,7 @@ public class StatisticsFragments extends Fragment {
     private String normalizeString(String buf) {
         String res = new String();
         for (char ch: buf.toCharArray()) {
-            if (ch >= '0' && ch <= '9') {
+            if ((ch >= '0' && ch <= '9') || ch == ',') {
                 res += ch;
             }
         }

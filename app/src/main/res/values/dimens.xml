@@ -1,7 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="margin_left">24dp</dimen>
-    <dimen name="margin_right">24dp</dimen>
+    <dimen name="margin_left">18dp</dimen>
+    <dimen name="margin_right">28dp</dimen>
     <dimen name="margin_top">30dp</dimen>
     <dimen name="corner">25dp</dimen>
 </resources>

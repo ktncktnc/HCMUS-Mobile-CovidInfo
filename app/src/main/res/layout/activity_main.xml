@@ -50,10 +50,11 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_below="@id/topbar"
         android:layout_above="@id/bottombar"
         android:id="@+id/mainviewpager"
+        android:paddingBottom="5dp"
         />
 
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
