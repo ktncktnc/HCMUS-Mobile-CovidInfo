@@ -14,6 +14,15 @@ public class NewsItem {
     private String mDes;
     private String mLink;
 
+    public NewsItem() {
+        mAvt = null;
+        mTime = null;
+        mTitle = null;
+        mAuthor = null;
+        mDes = null;
+        mLink = null;
+    }
+
     public NewsItem(Bitmap mAvt, String mTitle, Date mTime, String mAuthor, String mDes, String mLink) {
         this.mAvt = mAvt;
         this.mTitle = mTitle;
@@ -69,5 +78,11 @@ public class NewsItem {
 
     public void setmDes(String mDes) {
         this.mDes = mDes;
+    }
+
+    public String toString(){
+        String res = new String();
+        res += "\nTitle: " + mTitle + "\nAuthor: "  + mAuthor  + "\nTime: " + mTitle.toString() + "\nDes: " + mDes + "\nLink: " + mLink;
+        return res;
     }
 }

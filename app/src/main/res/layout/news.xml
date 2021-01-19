@@ -53,6 +53,8 @@
                 android:stateListAnimator="@null"
                 style="@style/font_raleway_textbold"
                 android:textAllCaps="false"
+                android:textAlignment="textEnd"
+                android:padding="0dp"
                 android:shadowColor="@color/trans"
                 android:id="@+id/statistic_time_total"/>
 
@@ -62,9 +64,11 @@
                 android:text="World"
                 android:backgroundTint="@color/trans"
                 android:stateListAnimator="@null"
+                android:padding="0dp"
                 android:shadowColor="@color/trans"
                 style="@style/font_raleway_textbold"
                 android:textColor="@color/brown"
+                android:textAlignment="textEnd"
                 android:textAllCaps="false"
                 android:id="@+id/statistic_time_yesterday"/>
 
@@ -79,5 +83,5 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="5dp"  />
+         />
 </LinearLayout>

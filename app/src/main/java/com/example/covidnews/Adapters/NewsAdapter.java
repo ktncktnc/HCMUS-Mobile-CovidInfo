@@ -1,6 +1,7 @@
 package com.example.covidnews.Adapters;
 
 import android.content.Context;
+import android.graphics.text.LineBreaker;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,12 +71,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemHolder> {
         }
 
 
+        @RequiresApi(api = Build.VERSION_CODES.O)
         public void setData(NewsItem item){
             mAvt.setImageBitmap(item.getmAvt());
             mTitle.setText(item.getmTitle());
             mDes.setText(item.getmDes());
             mAuthor.setText(item.getmAuthor());
             mTime.setText(dateFormat.format(item.getmTime()));
+            mTitle.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+            mDes.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
+
 
         }
 

@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingLeft="@dimen/margin_left"
+    android:layout_marginTop="10dp"
     android:paddingRight="@dimen/margin_right"
-    android:layout_marginBottom="15dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,12 +15,12 @@
         >
 
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/newsitem_avt"
-            android:src="@drawable/ic_mask_group"/>
+            android:src="@drawable/vnexpress_logo"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,7 +37,7 @@
                 android:text="Doremon"
                 android:textColor="@color/black"
                 style="@style/font_textsemibold"
-                android:layout_marginBottom="7dp"
+                android:layout_marginBottom="3dp"
                 android:id="@+id/newsitem_author"/>
 
             <TextView
@@ -55,7 +56,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/newsitem_title"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="5dp"
         android:textColor="@color/black"
         style="@style/font_h4"
         android:lineHeight="27sp"
@@ -72,9 +73,15 @@
         style="@style/font_normal"
         android:text="@string/newsitem_des"
         android:lineHeight="27sp"
+        android:layout_marginBottom="10dp"
 
     />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/brown"
+
+        android:layout_height="1dp"/>
 
 
 </LinearLayout>
