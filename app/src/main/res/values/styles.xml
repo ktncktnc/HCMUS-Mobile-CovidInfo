@@ -1,47 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="font_raleway_title">
-        <item name="fontFamily">@font/raleway_bold</item>
+
         <item name="android:textSize">24sp</item>
     </style>
     
     <style name="font_raleway_h1">
-        <item name="fontFamily">@font/raleway_bold</item>
+
         <item name= "android:textSize">20sp</item>
     </style>
 
     <style name="font_raleway_h2">
-        <item name="fontFamily">@font/raleway_bold</item>
+
         <item name= "android:textSize">18sp</item>
     </style>
 
     <style name="font_raleway_h3">
-        <item name="fontFamily">@font/raleway_bold</item>
         <item name= "android:textSize">16sp</item>
     </style>
 
     <style name="font_raleway_h4">
-        <item name="fontFamily">@font/raleway_semibold</item>
         <item name= "android:textSize">16sp</item>
     </style>
 
     <style name="font_raleway_normal">
-        <item name="fontFamily">@font/raleway_medium</item>
+
         <item name="android:textSize">14sp</item>
     </style>
     
     <style name="font_raleway_textsemibold">
-        <item name="fontFamily">@font/raleway_semibold</item>
+
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="font_raleway_textbold">
-        <item name="fontFamily">@font/raleway_bold</item>
+
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="font_raleway_smalltext">
-        <item name="fontFamily">@font/raleway_semibold</item>
+
         <item name="android:textSize">12sp</item>
     </style>
 
@@ -50,7 +48,7 @@
     </style>
 
     <style name="font_h1">
-        <item name="fontFamily">@font/raleway_bold</item>
+
         <item name= "android:textSize">20sp</item>
     </style>
 

@@ -8,14 +8,14 @@
     <color name="teal_700">#473F97</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="yellow">#FFB259</color>
-    <color name="red">#FF5959</color>
-    <color name="green">#4CD97B</color>
-    <color name="blue">#4DB5FF</color>
-    <color name="violet">#9059FF</color>
-    <color name="redchart">#FF5959</color>
-    <color name="maincolor">#473F97</color>
+    <color name="yellow">#F8BA73</color>
+    <color name="red">#F87575</color>
+    <color name="green">#6BDC90</color>
+    <color name="blue">#68BBF6</color>
+    <color name="violet">#A176F8</color>
+    <color name="redchart">#FD6E6E</color>
+    <color name="maincolor">#544C9C</color>
     <color name="brown">#999FBF</color>
-    <color name="lightviolet">#4C79FF</color>
+    <color name="lightviolet">#6D91FB</color>
     <color name="white20percent">#19FFFFFF</color>
 </resources>
