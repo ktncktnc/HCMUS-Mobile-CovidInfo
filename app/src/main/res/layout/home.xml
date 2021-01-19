@@ -17,6 +17,7 @@
         android:paddingLeft="@dimen/margin_left"
         android:paddingRight="@dimen/margin_right"
         style="@style/font_raleway_title"
+            
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -74,6 +75,8 @@
                     android:backgroundTint="@color/red"
                     android:textAllCaps="false"
                     android:textColor="@color/white"
+                    android:paddingLeft="25dp"
+                    android:paddingRight="25dp"
                     android:id="@+id/infobar_buttons_call"/>
 
                  <com.google.android.material.button.MaterialButton
@@ -84,6 +87,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:cornerRadius="@dimen/corner"
                      android:textAllCaps="false"
+                     android:paddingLeft="25dp"
+                     android:paddingRight="25dp"
                      style="@style/font_raleway_h4"
                     android:backgroundTint="@color/blue"
                     android:textColor="@color/white"
@@ -215,32 +220,32 @@
         app:layout_constraintTop_toBottomOf="@id/prevention"
         android:layout_marginLeft="@dimen/margin_left"
         android:layout_marginRight="@dimen/margin_right"
+        android:paddingBottom="0dp"
         android:id="@+id/test"
 
         android:layout_marginTop="30dp"
         >
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/bg_rounded_4corner"
+            android:layout_alignParentBottom="true"
             android:id="@+id/test_text"
             android:layout_marginTop="10dp"
-
-            >
+            android:paddingBottom="10dp">            >
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="150dp"
                 >
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:id="@+id/test_text_title"
                     android:text = "@string/test_text_title"
                     style="@style/font_raleway_h3"
@@ -249,7 +254,7 @@
                     />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/test_text_des"
                     android:text = "@string/test_text_des"
@@ -257,12 +262,11 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:textColor="@color/brown"
+                    android:lineHeight="25sp"
                     />
             </LinearLayout>
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <ImageView
             android:layout_width="wrap_content"

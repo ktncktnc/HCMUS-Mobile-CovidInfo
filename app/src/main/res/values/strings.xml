@@ -23,7 +23,7 @@
     <string name="prevention_clean">Clean your <br />  hands often</string>
     <string name="prevention_wear">Wear a <br /> facemask</string>
     <string name="test_text_title">Do your own test!</string>
-    <string name="test_text_des">Follow the instructions to <br /> do your own test.</string>
+    <string name="test_text_des">Follow the instructions to <br/> do your own test.</string>
 
     <string name="statistic_vietnam">Vietnam</string>
     <string name="statistic_world">World</string>

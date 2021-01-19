@@ -17,7 +17,7 @@
         android:paddingLeft="@dimen/margin_left"
         android:paddingRight="@dimen/margin_right"
         android:paddingTop="@dimen/margin_top"
-        android:paddingBottom="20dp"
+        android:paddingBottom="15dp"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout

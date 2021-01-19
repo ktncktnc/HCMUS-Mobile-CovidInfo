@@ -1,7 +1,9 @@
 package com.example.covidnews.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.text.LineBreaker;
+import android.net.Uri;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.covidnews.Objects.NewsItem;
@@ -18,21 +21,22 @@ import com.example.covidnews.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Clock;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemHolder> {
-    private final DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+    private final DateFormat dateFormat = new SimpleDateFormat("dd mmm yyyy");
     private ArrayList<NewsItem> mData;
+    private int state = 0;
+    // 0: World
+    // 1: Viet
     private Context mContext;
+    private Activity mActivity;
 
 
-    public NewsAdapter(ArrayList<NewsItem> mData, Context mContext) {
+    public NewsAdapter(ArrayList<NewsItem> mData,  Context mContext, Activity mActivity) {
         this.mData = mData;
         this.mContext = mContext;
+        this.mActivity = mActivity;
     }
 
     @NonNull
@@ -77,7 +81,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemHolder> {
             mTitle.setText(item.getmTitle());
             mDes.setText(item.getmDes());
             mAuthor.setText(item.getmAuthor());
-            mTime.setText(dateFormat.format(item.getmTime()));
+            mTime.setText(item.getmTime());
             mTitle.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
             mDes.setJustificationMode(LineBreaker.JUSTIFICATION_MODE_INTER_WORD);
 
@@ -86,7 +90,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ItemHolder> {
 
         @Override
         public void onClick(View v) {
-
+            int position = getAdapterPosition();
+            String url = mData.get(position).getmLink();
+            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+            CustomTabsIntent customTabsIntent = builder.build();
+            customTabsIntent.launchUrl(mContext, Uri.parse(url));
         }
     }
 }

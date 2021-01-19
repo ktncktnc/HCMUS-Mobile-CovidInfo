@@ -288,11 +288,11 @@ public class StatisticsFragment extends Fragment {
                     @Override
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         if (!response.isSuccessful()) {
-                            Log.d("DBG", "Error: " + response.toString());
+                            //Log.d("DBG", "Error: " + response.toString());
                             throw new IOException("Unexpected code " + response);
                         } else {
                             String result = response.body().string();
-                            Log.d("DBG", result);
+                            //Log.d("DBG", result);
                             try {
                                 JSONObject object = new JSONObject(result);
                                 JSONObject jsonObject;

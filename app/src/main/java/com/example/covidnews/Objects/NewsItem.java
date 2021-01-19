@@ -9,7 +9,7 @@ import java.util.Date;
 public class NewsItem {
     private Bitmap mAvt;
     private String mTitle;
-    private Date mTime;
+    private String mTime;
     private String mAuthor;
     private String mDes;
     private String mLink;
@@ -23,7 +23,7 @@ public class NewsItem {
         mLink = null;
     }
 
-    public NewsItem(Bitmap mAvt, String mTitle, Date mTime, String mAuthor, String mDes, String mLink) {
+    public NewsItem(Bitmap mAvt, String mTitle, String mTime, String mAuthor, String mDes, String mLink) {
         this.mAvt = mAvt;
         this.mTitle = mTitle;
         this.mTime = mTime;
@@ -56,11 +56,11 @@ public class NewsItem {
         this.mTitle = mTitle;
     }
 
-    public Date getmTime() {
+    public String getmTime() {
         return mTime;
     }
 
-    public void setmTime(Date mTime) {
+    public void setmTime(String mTime) {
         this.mTime = mTime;
     }
 

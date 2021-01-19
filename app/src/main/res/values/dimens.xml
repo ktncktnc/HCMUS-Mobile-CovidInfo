@@ -2,6 +2,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="margin_left">18dp</dimen>
     <dimen name="margin_right">18dp</dimen>
-    <dimen name="margin_top">30dp</dimen>
+    <dimen name="margin_top">25dp</dimen>
     <dimen name="corner">28dp</dimen>
 </resources>
