@@ -10,7 +10,7 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    
+
     <string name="topbar_title">Covid-19</string>
     <string name="infobar_title">Are you feeling sick?</string>
     <string name="infobar_des">If you feel sick with any of covid-19 symptoms please call or SMS us immediately for help.</string>
@@ -18,20 +18,20 @@
     <string name="infobar_buttons_sendsms">Send SMS</string>
 
     <string name="prevention_title">Prevention</string>
-    <string name="prevention_avoid">Avoid close<br/>  contact</string>
-    <string name="prevention_clean">Clean your <br/>  hands often</string>
-    <string name="prevention_wear">Wear a <br/> facemask</string>
+    <string name="prevention_avoid">Avoid close<br />  contact</string>
+    <string name="prevention_clean">Clean your <br />  hands often</string>
+    <string name="prevention_wear">Wear a <br /> facemask</string>
     <string name="test_text_title">Do your own test!</string>
-    <string name="test_text_des">Follow the instructions to <br/> do your own test.</string>
-    
+    <string name="test_text_des">Follow the instructions to <br /> do your own test.</string>
+
     <string name="statistic_vietnam">Vietnam</string>
     <string name="statistic_world">World</string>
-    
+
     <string name="statistic_today">Today</string>
     <string name="statistic_total">Total</string>
     <string name="statistic_yesterday">Yesterday</string>
     <string name="statistic_2daysago">2 days ago</string>
-    
+
     <string name="numbers_affected">Affected</string>
     <string name="numbers_death">Death</string>
     <string name="numbers_recovered">Recover</string>
@@ -42,4 +42,6 @@
 
     <string name="newsitem_title">"NÓNG: Thanh niên nhập cảnh 'chui' ở quận 9 dương tính COVID-19</string>
     <string name="newsitem_des">"TTO - Nam thanh niên tên K. nhập cảnh 'chui' về quận 9, TP.HCM đã có kết quả xét nghiệm dương tính với COVID-19. Như vậy trong nhóm 6 người...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

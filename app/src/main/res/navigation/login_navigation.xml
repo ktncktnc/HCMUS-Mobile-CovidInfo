@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_navigation.xml"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.covidnews.Login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_sighUpFragment"
+            app:destination="@id/sighUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_forgetPasswordFragment"
+            app:destination="@id/forgetPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sighUpFragment"
+        android:name="com.example.covidnews.Login.SighUpFragment"
+        android:label="fragment_sigh_up"
+        tools:layout="@layout/fragment_sigh_up" />
+    <fragment
+        android:id="@+id/verificationCodeFragment"
+        android:name="com.example.covidnews.Login.VerificationCodeFragment"
+        android:label="VerificationCodeFragment" >
+        <action
+            android:id="@+id/action_verificationCodeFragment_to_changePasswordForgetFragment"
+            app:destination="@id/changePasswordForgetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePasswordForgetFragment"
+        android:name="com.example.covidnews.Login.ChangePasswordForgetFragment"
+        android:label="ChangePasswordForgetFragment" />
+    <fragment
+        android:id="@+id/forgetPasswordFragment"
+        android:name="com.example.covidnews.Login.ForgetPasswordFragment"
+        android:label="ForgetPasswordFragment" >
+        <action
+            android:id="@+id/action_forgetPasswordFragment_to_verificationCodeFragment"
+            app:destination="@id/verificationCodeFragment" />
+    </fragment>
+</navigation>
