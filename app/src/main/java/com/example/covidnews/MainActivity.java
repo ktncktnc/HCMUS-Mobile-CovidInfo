@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import com.example.covidnews.fragments.HomeFragment;
+import com.example.covidnews.fragments.MapsFragment;
 import com.example.covidnews.fragments.NewsFragment;
 import com.example.covidnews.fragments.StatisticsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -127,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
             }
             else if(position == 2)
                 return new NewsFragment();
-            else return new Fragment();
+            else
+                return new MapsFragment();
         }
 
         @Override
