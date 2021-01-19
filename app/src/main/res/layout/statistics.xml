@@ -46,8 +46,8 @@
                 app:layout_constraintTop_toBottomOf="@id/title">
 
                 <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
                     android:text="@string/statistic_vietnam"
                     app:cornerRadius="20dp"
                     android:backgroundTint="@color/trans"
@@ -59,8 +59,8 @@
                     android:layout_weight="1"
                     android:id="@+id/statistic_toggle_vietnam"/>
                 <com.google.android.material.button.MaterialButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
                     android:backgroundTint="@color/trans"
                     android:stateListAnimator="@null"
                     style="@style/font_raleway_textbold"

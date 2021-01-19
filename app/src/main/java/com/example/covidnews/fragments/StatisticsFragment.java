@@ -43,7 +43,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class StatisticsFragments extends Fragment {
+public class StatisticsFragment extends Fragment {
     private int location = 1;
     private int time = 0;
     private boolean fetch = false;
@@ -238,7 +238,10 @@ public class StatisticsFragments extends Fragment {
                     public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                         String result = response.body().string();
                         try {
-                            dataGraph.add(new JSONObject(result));
+                            if(dataGraph.size() > 0)
+                                dataGraph.add(0, new JSONObject(result));
+                            else
+                                dataGraph.add(new JSONObject(result));
 
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
@@ -342,7 +345,7 @@ public class StatisticsFragments extends Fragment {
             Log.d("DBG", "setStatistic() error: " + e.toString());
         }
 
-        if((fetch_graphViet == false && location == 1) || (fetch_graphWorld == false && location == 0)) return;
+        if(fetch_graphViet == false || fetch_graphWorld == false) return;
 
         JSONObject jsonObject = dataGraph.get(location);
         Iterator<String> keys = jsonObject.keys();

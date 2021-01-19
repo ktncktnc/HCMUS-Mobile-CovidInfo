@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/margin_left"
+    android:paddingRight="@dimen/margin_right"
+    android:layout_marginBottom="15dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/newsitem_avt"
+            android:src="@drawable/ic_mask_group"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/newsitem_avt"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doremon"
+                android:textColor="@color/black"
+                style="@style/font_textsemibold"
+                android:layout_marginBottom="7dp"
+                android:id="@+id/newsitem_author"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 minutes ago"
+                android:textColor="@color/brown"
+                style="@style/font_textsemibold"
+                android:id="@+id/newsitem_time"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newsitem_title"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        style="@style/font_h4"
+        android:lineHeight="27sp"
+        android:text="@string/newsitem_title"
+
+    />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/newsitem_des"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/brown"
+        style="@style/font_normal"
+        android:text="@string/newsitem_des"
+        android:lineHeight="27sp"
+
+    />
+
+
+
+</LinearLayout>
