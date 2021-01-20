@@ -13,11 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.covidnews.Activities.MainActivity;
+import com.example.covidnews.Database.DatabaseHelper;
 import com.example.covidnews.R;
 
 public class ChangePasswordForgetFragment extends Fragment{
     Button btn_save;
     EditText et_new_password, et_confirm_new_password;
+    DatabaseHelper db;
 
     public ChangePasswordForgetFragment(){
     }
@@ -39,6 +41,7 @@ public class ChangePasswordForgetFragment extends Fragment{
                              Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_change_password_forget, container, false);
 
+        db = new DatabaseHelper(getContext());
         et_new_password = (EditText) view.findViewById(R.id.editText_input_new_password);
         et_confirm_new_password = (EditText) view.findViewById(R.id.editText_input_confirm_new_password);
 
@@ -59,6 +62,15 @@ public class ChangePasswordForgetFragment extends Fragment{
 
                 //change database
 
+                String phone = getActivity().getIntent().getExtras().get("phone_num_forget_pass").toString();
+                if (!db.isPhoneNumberExists(phone))
+                    db.updatePassword(phone, new_password);
+                else {
+                    Toast.makeText(getContext().getApplicationContext(), "Something was wrong!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
                 //intent to hompage
                 Toast.makeText(getContext().getApplicationContext(), "Change password success", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
@@ -71,10 +83,12 @@ public class ChangePasswordForgetFragment extends Fragment{
         return view;
     }
 
-    private boolean checkMatchingPassword(String new_password, String confirm_new_password){
-        if (new_password.equals(confirm_new_password))
-            return true;
 
+
+    private boolean checkMatchingPassword(String new_password, String confirm_new_password){
+        if (new_password.equals(confirm_new_password)){
+            return true;
+        }
         Toast.makeText(getContext().getApplicationContext(), "Confirm password doesn't match", Toast.LENGTH_LONG).show();
         return false;
     }
@@ -83,6 +97,12 @@ public class ChangePasswordForgetFragment extends Fragment{
         if (new_password.length() < 6){
             Toast.makeText(getContext().getApplicationContext(), "Your new password must have at least 6 characters", Toast.LENGTH_LONG).show();
             return false;
+        }
+
+        String _phone = getActivity().getIntent().getExtras().get("phone_num_forget_pass").toString();
+        if (db.checkAccount(_phone, new_password)){
+            Toast.makeText(getContext(), "The password already exists!",Toast.LENGTH_SHORT).show();
+            return  false;
         }
         return true;
     }

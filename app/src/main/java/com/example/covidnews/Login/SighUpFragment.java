@@ -74,9 +74,10 @@ public class SighUpFragment extends Fragment{
             else
                 Toast.makeText(getContext(), "Register fail!",Toast.LENGTH_SHORT).show();
         }
-        else
-            Toast.makeText(getContext(), "Register fail! Email already exists",Toast.LENGTH_SHORT).show();
-
+        else {
+            Toast.makeText(getContext(), "Register fail! Email already exists", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         Toast.makeText(getContext().getApplicationContext(), "Sign in success", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);

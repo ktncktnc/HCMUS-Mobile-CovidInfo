@@ -123,7 +123,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         String password = et_password.getText().toString();
 
         if (checkUser(phone_number,password)){
-            Toast.makeText(getContext().getApplicationContext(), "Login success", Toast.LENGTH_LONG).show();
             /*Intent to Homepage (MainActivity)*/
             Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
             startActivity(intent);
