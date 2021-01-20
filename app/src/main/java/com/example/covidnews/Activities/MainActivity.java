@@ -4,19 +4,23 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.covidnews.Login.LoginActivity;
 import com.example.covidnews.R;
 import com.example.covidnews.fragments.HomeFragment;
 import com.example.covidnews.fragments.MapsFragment;
 import com.example.covidnews.fragments.NewsFragment;
 import com.example.covidnews.fragments.StatisticsFragment;
+import com.facebook.login.LoginManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
@@ -42,8 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private NavigationView sideNav;
     private ImageView menuButton;
     private DrawerLayout drawerLayout;
-    private String sms_phone = new String("0386886675");
-    private String sms_content = new String("Tôi cảm thấy không khỏe...");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +61,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (item.getItemId()){
                     case R.id.nav_setting:{
                         Intent myIntent = new Intent(getBaseContext(), SettingActivity.class);
-                        myIntent.putExtra("sms_phone", sms_phone);
-                        myIntent.putExtra("sms_content", sms_content);
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         getBaseContext().startActivity(myIntent);
                         break;
+                    }
+                    case R.id.nav_aboutus:{
+                        String url = "http://covidnewsapi.herokuapp.com/";
+                        CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                        CustomTabsIntent customTabsIntent = builder.build();
+                        customTabsIntent.launchUrl(getBaseContext(), Uri.parse(url));
+                        break;
+                    }
+                    case R.id.nav_logout:{
+                        LoginManager.getInstance().logOut();
+                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+
+
                     }
                 }
                 return true;
@@ -136,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if (v.getId() == R.id.menubar_menu){
             drawerLayout.openDrawer(GravityCompat.START);
-
         }
     }
 

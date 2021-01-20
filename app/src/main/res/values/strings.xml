@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">CovidNews</string>
+    <string name="facebook_app_id">243719987127959</string>
+    <string name="fb_login_protocol_scheme">fb243719987127959</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>

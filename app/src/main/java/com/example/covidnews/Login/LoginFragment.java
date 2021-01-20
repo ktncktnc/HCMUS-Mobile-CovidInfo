@@ -3,9 +3,11 @@ package com.example.covidnews.Login;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +17,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.covidnews.Activities.MainActivity;
+import com.example.covidnews.Application;
 import com.example.covidnews.R;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 public class LoginFragment extends Fragment implements View.OnClickListener{
-    Button btn_login;
-    EditText et_phone_number, et_password;
-    TextView tv_forget_password, tv_sign_up;
+    private Button btn_login;
+    private EditText et_phone_number, et_password;
+    private TextView tv_forget_password, tv_sign_up;
+    private LoginButton fbloginButton;
+    private CallbackManager callbackManager;
     public LoginFragment(){
         // Required empty public constructor
     }
@@ -30,6 +42,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+
     }
 
     @Override
@@ -46,6 +59,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         btn_login = (Button) view.findViewById(R.id.btn_login);
         btn_login.setOnClickListener(this);
 
+
         tv_sign_up = (TextView) view.findViewById(R.id.tv_sign_up);
         tv_sign_up.setOnClickListener(this);
 
@@ -54,6 +68,31 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
         et_phone_number = (EditText) view.findViewById(R.id.et_phone_number);
         et_password = (EditText) view.findViewById(R.id.et_password);
+        fbloginButton = view.findViewById(R.id.fb_login_button);
+        callbackManager = CallbackManager.Factory.create();
+        Log.d("DBG", "Fb login register");
+        fbloginButton.setFragment(this);
+        fbloginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Application.setPreferences("user_id", loginResult.getAccessToken().getUserId());
+                Application.setPreferences("user_avt", loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1");
+                Log.d("DBG", "Fb login");
+                Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+
+            @Override
+            public void onCancel() {
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+            }
+        });
 
         return view;
     }
@@ -99,5 +138,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         if (phone_number.equals("0123456789") && password.equals(123456))
             return true;
         return false;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }
