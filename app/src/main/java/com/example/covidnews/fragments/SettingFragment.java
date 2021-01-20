@@ -1,16 +1,11 @@
 package com.example.covidnews.fragments;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.provider.Settings;
 import android.util.Log;
 
 import androidx.preference.EditTextPreference;
 import androidx.preference.Preference;
-import androidx.preference.PreferenceFragment;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.PreferenceManager;
 
 import com.example.covidnews.Application;
 import com.example.covidnews.R;

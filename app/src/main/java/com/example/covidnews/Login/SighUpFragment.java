@@ -13,12 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.covidnews.Activities.MainActivity;
+import com.example.covidnews.Database.DatabaseHelper;
 import com.example.covidnews.R;
 
 public class SighUpFragment extends Fragment{
     Button btn_register;
     EditText et_phone, et_name, et_password, et_confirm_password;
-
+    DatabaseHelper db;
     public SighUpFragment(){
         // Required empty public constructor
     }
@@ -45,7 +46,7 @@ public class SighUpFragment extends Fragment{
         et_phone = (EditText)view.findViewById(R.id.editText_input_phone_number);
         et_password = (EditText)view.findViewById(R.id.editText_input_password);
         et_confirm_password = (EditText)view.findViewById(R.id.editText_input_confirm_password);
-
+        db = new DatabaseHelper(getContext());
 
         btn_register = (Button)view.findViewById(R.id.btn_register);
         btn_register.setOnClickListener(new View.OnClickListener(){
@@ -59,14 +60,23 @@ public class SighUpFragment extends Fragment{
 
     private void signUpHandle(){
         String _name = et_name.getText().toString().trim();
-        String _email = et_phone.getText().toString().trim();
+        String _phone = et_phone.getText().toString().trim();
         String _password = et_password.getText().toString().trim();
         String _confirmPassword = et_confirm_password.getText().toString().trim();
 
-        if (!checkValidate(_email, _password, _confirmPassword))
+        if (!checkValidate(_phone, _password, _confirmPassword))
             return;
 
         //add database
+        if (db.isPhoneNumberExists(_phone)){
+            if (db.insert(_name,_phone,_password))
+                Toast.makeText(getContext(), "Register success!",Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(getContext(), "Register fail!",Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(getContext(), "Register fail! Email already exists",Toast.LENGTH_SHORT).show();
+
 
         Toast.makeText(getContext().getApplicationContext(), "Sign in success", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);

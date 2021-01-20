@@ -2,11 +2,6 @@ package com.example.covidnews.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +11,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.example.covidnews.Activities.MainActivity;
 import com.example.covidnews.Application;
+import com.example.covidnews.Database.DatabaseHelper;
 import com.example.covidnews.R;
-import com.facebook.AccessToken;
-import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -33,6 +31,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
     private TextView tv_forget_password, tv_sign_up;
     private LoginButton fbloginButton;
     private CallbackManager callbackManager;
+    DatabaseHelper db;
     public LoginFragment(){
         // Required empty public constructor
     }
@@ -56,6 +55,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        db = new DatabaseHelper(getContext());
         btn_login = (Button) view.findViewById(R.id.btn_login);
         btn_login.setOnClickListener(this);
 
@@ -134,9 +134,35 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
         }
     }
 
-    private boolean checkUser(String phone_number, String password){
-        if (phone_number.equals("0123456789") && password.equals(123456))
-            return true;
+    private boolean checkUser(String _phone, String _password){
+
+//check phone input
+        if (_phone.equals("")) {
+            Toast.makeText(getContext().getApplicationContext(), "You must type phone", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (_phone.length() != 10) {
+            Toast.makeText(getContext().getApplicationContext(), "Phone number must have 10 numbers", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+
+        //length of password is more 6 characters
+        if (_password.length() < 6){
+            Toast.makeText(getContext().getApplicationContext(), "Password must have at least 6 characters", Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (db.checkAccount(_phone, _password)){
+            Toast.makeText(getContext(), "Login success!",Toast.LENGTH_SHORT).show();
+            return  true;
+        }
+        else
+            Toast.makeText(getContext(), "Something was wrong!",Toast.LENGTH_SHORT).show();
+
+        /*if (_phone.equals("0123456789") && _password.equals("123456"))
+            return true;*/
         return false;
     }
 

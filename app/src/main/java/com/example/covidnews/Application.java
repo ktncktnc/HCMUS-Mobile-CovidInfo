@@ -1,8 +1,7 @@
 package com.example.covidnews;
 
 import android.content.SharedPreferences;
-
-import androidx.preference.PreferenceManager;
+import android.preference.PreferenceManager;
 
 public class Application extends android.app.Application {
     private static Application _instance;
