@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private NavigationView sideNav;
     private ImageView menuButton;
     private DrawerLayout drawerLayout;
-
+    private String sms_phone = new String("0386886675");
+    private String sms_content = new String("Tôi cảm thấy không khỏe...");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (item.getItemId()){
                     case R.id.nav_setting:{
                         Intent myIntent = new Intent(getBaseContext(), SettingActivity.class);
+                        myIntent.putExtra("sms_phone", sms_phone);
+                        myIntent.putExtra("sms_content", sms_content);
                         getBaseContext().startActivity(myIntent);
                         break;
                     }
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         viewPager2 = findViewById(R.id.mainviewpager);
         mainViewPagerAdapter adapter = new mainViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
         viewPager2.setAdapter(adapter);
+        viewPager2.setUserInputEnabled(false);
         viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {

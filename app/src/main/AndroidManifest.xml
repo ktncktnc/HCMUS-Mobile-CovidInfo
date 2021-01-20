@@ -10,8 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".Application"
         android:theme="@style/Theme.CovidNews">
-
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -24,7 +24,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC4ufNlKPrIN7v5zOEcqBDdLUYXNl0m_GM" />
 
-        <activity android:name=".Login.LoginActivity"></activity>
+        <activity android:name=".Login.LoginActivity" />
         <activity
             android:name=".Activities.MainActivity"
             android:label="@string/app_name"
@@ -35,8 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.SettingActivity"></activity>
-
+        <activity android:name=".Activities.SettingActivity" />
     </application>
 
 </manifest>

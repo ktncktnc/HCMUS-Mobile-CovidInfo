@@ -1,5 +1,7 @@
 package com.example.covidnews.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -46,6 +48,14 @@ import okhttp3.Response;
 public class StatisticsFragment extends Fragment {
     private int location = 1;
     private int time = 0;
+    private Activity mActivity;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (Activity)context;
+    }
+
     private boolean fetch = false;
     private boolean fetch_graphViet = false;
     private boolean fetch_graphWorld = false;
@@ -78,6 +88,8 @@ public class StatisticsFragment extends Fragment {
         MaterialButton timeTotal = view.findViewById(R.id.statistic_time_total);
         MaterialButton time2daysago = view.findViewById(R.id.statistic_time_2daysago);
         MaterialButton timeYesterday = view.findViewById(R.id.statistic_time_yesterday);
+
+
 
         numberAffected = view.findViewById(R.id.numbers_affected);
         numberDeath = view.findViewById(R.id.numbers_death);
@@ -141,8 +153,8 @@ public class StatisticsFragment extends Fragment {
     }
 
     private void setChart(BarChart barChart, BarDataSet dataSet) {
-        dataSet.setColor(getResources().getColor(R.color.red));
-        Typeface raleway = ResourcesCompat.getFont(getContext(), R.font.raleway_semibold);
+        dataSet.setColor(mActivity.getResources().getColor(R.color.red));
+        Typeface raleway = ResourcesCompat.getFont(mActivity, R.font.raleway_semibold);
         dataSet.setValueTypeface(raleway);
         dataSet.setDrawValues(false);
         BarData data = new BarData(dataSet);
@@ -154,15 +166,15 @@ public class StatisticsFragment extends Fragment {
         barChart.getAxisRight().setEnabled(false);
         //barChart.getAxisLeft().setTypeface(raleway);
         barChart.getAxisLeft().setTextSize((float) 11.0);
-        barChart.getAxisLeft().setTextColor(getResources().getColor(R.color.brown));
-        barChart.getAxisLeft().setGridColor(getResources().getColor(R.color.brown));
+        barChart.getAxisLeft().setTextColor(mActivity.getResources().getColor(R.color.brown));
+        barChart.getAxisLeft().setGridColor(mActivity.getResources().getColor(R.color.brown));
         XAxis xAxis = barChart.getXAxis();
 
         xAxis.setDrawGridLines(false);
         //xAxis.setTypeface(raleway);
         xAxis.setTextSize((float) 11.0);
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis.setTextColor(getResources().getColor(R.color.brown));
+        xAxis.setTextColor(mActivity.getResources().getColor(R.color.brown));
 
         barChart.getAxisLeft().enableGridDashedLine((float) 8.0, (float) 5.0, (float) 1.0);
         barChart.invalidate();
@@ -170,20 +182,20 @@ public class StatisticsFragment extends Fragment {
 
     private void setSelectedToggleButton(MaterialButton button) {
         button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
-        button.setTextColor(getResources().getColor(R.color.black));
+        button.setTextColor(mActivity.getResources().getColor(R.color.black));
     }
     private void setUnselectedToggleButton(MaterialButton button) {
         button.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.trans)));
-        button.setTextColor(getResources().getColor(R.color.white));
+        button.setTextColor(mActivity.getResources().getColor(R.color.white));
         button.setStateListAnimator(null);
     }
 
     private void setSelectedTimeButton(MaterialButton button) {
-        button.setTextColor(getResources().getColor(R.color.white));
+        button.setTextColor(mActivity.getResources().getColor(R.color.white));
     }
 
     private void setUnselectedTimeButton(MaterialButton button) {
-        button.setTextColor(getResources().getColor(R.color.brown));
+        button.setTextColor(mActivity.getResources().getColor(R.color.brown));
     }
 
     private void fetchDataGraph(){
@@ -207,7 +219,7 @@ public class StatisticsFragment extends Fragment {
                         try {
                             dataGraph.add(new JSONObject(result));
 
-                            getActivity().runOnUiThread(new Runnable() {
+                            mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     fetch_graphWorld = true;
@@ -226,7 +238,7 @@ public class StatisticsFragment extends Fragment {
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
                         e.printStackTrace();
                         Log.d("DBG", "Error: " + e.toString());
-                        getActivity().runOnUiThread(new Runnable() {
+                        mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 if(fetch_graphViet == false && fetch_graphWorld == false) fetchDataGraph();
@@ -243,7 +255,7 @@ public class StatisticsFragment extends Fragment {
                             else
                                 dataGraph.add(new JSONObject(result));
 
-                            getActivity().runOnUiThread(new Runnable() {
+                            mActivity.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     fetch_graphViet = true;
@@ -277,7 +289,7 @@ public class StatisticsFragment extends Fragment {
                     public void onFailure(@NotNull Call call, @NotNull IOException e) {
                         e.printStackTrace();
                         Log.d("DBG", "Error: " + e.toString());
-                        getActivity().runOnUiThread(new Runnable() {
+                        mActivity.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 fetchData();
@@ -301,7 +313,7 @@ public class StatisticsFragment extends Fragment {
                                     dataStatistic.add(jsonObject);
                                 }
                                 fetch = true;
-                                getActivity().runOnUiThread(new Runnable() {
+                                mActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         fetch = true;

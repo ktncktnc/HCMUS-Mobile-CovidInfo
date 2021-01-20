@@ -1,6 +1,7 @@
 package com.example.covidnews.fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.text.LineBreaker;
 import android.net.Uri;
 import android.os.Build;
@@ -18,11 +19,12 @@ import androidx.annotation.RequiresApi;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.fragment.app.Fragment;
 
+import com.example.covidnews.Application;
 import com.example.covidnews.R;
 import com.google.android.material.button.MaterialButton;
 
 public class HomeFragment extends Fragment implements View.OnClickListener{
-    private String sms = new String("Tôi cảm thấy không khỏe...");
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
@@ -37,6 +39,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         test.setOnClickListener(this);
         callButton.setOnClickListener(this);
         sendsmsButton.setOnClickListener(this);
+
         return view;
     }
 
@@ -49,8 +52,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 break;
             }
             case R.id.infobar_buttons_sendsms:{
-                Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"+ "0386886675"));
-                smsIntent.putExtra("sms_body",sms);
+                Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"+ Application.getPrefranceData("sms_phone")));
+                smsIntent.putExtra("sms_body",Application.getPrefranceData("sms_content"));
                 startActivity(smsIntent);
                 break;
             }
