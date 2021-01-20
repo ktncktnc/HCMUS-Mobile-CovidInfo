@@ -3,17 +3,17 @@ package com.example.covidnews.Activities;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
 import com.example.covidnews.Application;
 import com.example.covidnews.Login.LoginActivity;
 import com.example.covidnews.R;
-import com.example.covidnews.fragments.HomeFragment;
-import com.example.covidnews.fragments.MapsFragment;
-import com.example.covidnews.fragments.NewsFragment;
-import com.example.covidnews.fragments.StatisticsFragment;
+import com.example.covidnews.Fragments.HomeFragment;
+import com.example.covidnews.Fragments.MapsFragment;
+import com.example.covidnews.Fragments.NewsFragment;
+import com.example.covidnews.Fragments.StatisticsFragment;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -41,6 +41,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private GoogleSignInClient googleSignInClient;
     private GoogleSignInOptions googleSignInOptions;
     private DrawerLayout drawerLayout;
+    private ImageView avt;
+    private TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         sideNav = findViewById(R.id.nvView);
+        avt = sideNav.getHeaderView(0).findViewById(R.id.nav_header_imageView);
+        name = sideNav.getHeaderView(0).findViewById(R.id.nav_header_textView);
+
+        String nameStr = Application.getPrefranceData("user_name");
+        String avtStr = Application.getPrefranceData("user_avt");
+
+        if(nameStr == null || nameStr.length() == 0)
+            nameStr = new String("Name");
+        if(avtStr == null || avtStr.length() == 0)
+            avtStr = new String("https://www.vinamilk.com.vn/sua-bot-nguoi-lon-vinamilk/wp-content/themes/suabotnguoilon/tpl/assets/img/profile/avt-default.jpg");
+
+        name.setText(nameStr);
+        Glide.with(this).load(avtStr).into(avt);
+
         sideNav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -95,6 +112,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         else if(type == "gg"){
                             googleSignInClient.signOut();
                         }
+
+                        Application.setPreferences("user_name", "");
+                        Application.setPreferences("user_id", "");
+                        Application.setPreferences("user_avt", "");
+                        Application.setPreferences("login_type", "");
 
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);

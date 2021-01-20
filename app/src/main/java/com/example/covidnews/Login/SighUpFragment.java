@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.covidnews.Activities.MainActivity;
+import com.example.covidnews.Application;
 import com.example.covidnews.Database.DatabaseHelper;
 import com.example.covidnews.R;
 
@@ -88,7 +89,7 @@ public class SighUpFragment extends Fragment{
             Toast.makeText(getContext(), "Register fail! Email already exists", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        Application.setPreferences("user_name", et_name.getText().toString());
         Toast.makeText(getContext().getApplicationContext(), "Sign in success", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
         startActivity(intent);

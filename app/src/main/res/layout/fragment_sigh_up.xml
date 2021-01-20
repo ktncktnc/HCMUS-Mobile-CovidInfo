@@ -71,7 +71,7 @@
             android:hint="0123456789"
             style="@style/font_raleway_normal"
             android:maxLines="1"
-            android:maxLength="30"
+            android:maxLength="10"
             android:singleLine="true"
             android:padding = "5dp"/>
 

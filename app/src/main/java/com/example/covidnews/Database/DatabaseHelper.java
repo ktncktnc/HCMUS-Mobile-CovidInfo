@@ -78,4 +78,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL(strSQL);
     }
 
+    public String getName(String phone_num){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select "+ COLUMN_FULL_NAME + " from "+ TABLE_NAME +" where " + COLUMN_PHONE_NUM + "= ?", new String[]{phone_num});
+        cursor.moveToFirst();
+        return cursor.getString(0);
+    }
+
 }

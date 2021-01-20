@@ -91,8 +91,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             public void onSuccess(LoginResult loginResult) {
                 Application.setPreferences("login_type", "fb");
                 Application.setPreferences("user_id", loginResult.getAccessToken().getUserId());
-                Application.setPreferences("user_avt", loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1");
-
+                //Application.setPreferences("user_avt", loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1");
+                Application.setPreferences("user_name", "Name");
                 Log.d("DBG", "Fb login");
                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -159,7 +159,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
         if (checkUser(phone_number,password)){
             /*Intent to Homepage (MainActivity)*/
+            Application.setPreferences("user_name", db.getName(phone_number));
             Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+
             startActivity(intent);
             getActivity().finish();
         }

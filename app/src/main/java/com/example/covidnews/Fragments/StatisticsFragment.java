@@ -1,9 +1,8 @@
-package com.example.covidnews.fragments;
+package com.example.covidnews.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.covidnews.R;

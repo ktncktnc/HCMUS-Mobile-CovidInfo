@@ -1,4 +1,4 @@
-package com.example.covidnews.fragments;
+package com.example.covidnews.Fragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

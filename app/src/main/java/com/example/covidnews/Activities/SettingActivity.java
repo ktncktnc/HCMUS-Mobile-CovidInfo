@@ -1,17 +1,12 @@
 package com.example.covidnews.Activities;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.preference.EditTextPreference;
-import androidx.preference.Preference;
-import androidx.preference.PreferenceFragment;
 
 import com.example.covidnews.R;
-import com.example.covidnews.fragments.SettingFragment;
+import com.example.covidnews.Fragments.SettingFragment;
 
 public class SettingActivity extends AppCompatActivity {
     private String sms_phone = null;
@@ -21,7 +16,8 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        sms_phone = getIntent().getStringExtra("sms_phone");
+
+
 
         getSupportFragmentManager().beginTransaction().replace(R.id.setting_container, new SettingFragment()).commit();
 

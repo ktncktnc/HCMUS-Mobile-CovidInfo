@@ -1,4 +1,4 @@
-package com.example.covidnews.fragments;
+package com.example.covidnews.Fragments;
 
 import android.os.Bundle;
 import android.util.Log;
