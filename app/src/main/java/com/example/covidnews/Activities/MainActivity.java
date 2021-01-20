@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case R.id.nav_setting:{
                         Intent myIntent = new Intent(getBaseContext(), SettingActivity.class);
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         getBaseContext().startActivity(myIntent);
                         break;
                     }
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         String url = "http://covidnewsapi.herokuapp.com/";
                         CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                         CustomTabsIntent customTabsIntent = builder.build();
+                        customTabsIntent.intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         customTabsIntent.launchUrl(getBaseContext(), Uri.parse(url));
                         break;
                     }
