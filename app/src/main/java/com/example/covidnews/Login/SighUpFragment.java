@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.covidnews.Activities.MainActivity;
@@ -19,6 +20,7 @@ import com.example.covidnews.R;
 public class SighUpFragment extends Fragment{
     Button btn_register;
     EditText et_phone, et_name, et_password, et_confirm_password;
+    ImageButton backButton;
     DatabaseHelper db;
     public SighUpFragment(){
         // Required empty public constructor
@@ -45,6 +47,7 @@ public class SighUpFragment extends Fragment{
         et_name = (EditText)view.findViewById(R.id.editText_input_full_name);
         et_phone = (EditText)view.findViewById(R.id.editText_input_phone_number);
         et_password = (EditText)view.findViewById(R.id.editText_input_password);
+        backButton = view.findViewById(R.id.back_button);
         et_confirm_password = (EditText)view.findViewById(R.id.editText_input_confirm_password);
         db = new DatabaseHelper(getContext());
 
@@ -53,6 +56,13 @@ public class SighUpFragment extends Fragment{
             @Override
             public void onClick(View v){
                 signUpHandle();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
         return view;

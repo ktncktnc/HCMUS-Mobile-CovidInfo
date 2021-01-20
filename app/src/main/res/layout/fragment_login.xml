@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
     tools:context=".Login.LoginFragment">
 
 
@@ -12,24 +14,23 @@
         android:id="@+id/tv_name_app"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="60dp"
         android:text="@string/app_name"
         android:textColor="@color/maincolor"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/TextAppearance.MaterialComponents.Headline2"
-        android:textStyle="bold"
+        style="@style/font_raleway_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_text_login"
-        style="@style/TextAppearance.MaterialComponents.Headline3"
+        style="@style/font_raleway_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/black"
         android:text="Login"
-        android:textColor="@color/cardview_dark_background"
-        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_app" />
@@ -37,18 +38,17 @@
     <EditText
         android:id="@+id/et_phone_number"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
         android:padding="5dp"
         android:paddingStart="10dp"
         android:background="@drawable/input_login_shape"
         android:ems="10"
         android:hint="Phone number"
         android:inputType="numberDecimal"
-        android:maxLength="10"
+        android:maxLength="11"
         android:maxLines="1"
+        style="@style/font_raleway_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_text_login" />
@@ -56,10 +56,9 @@
     <EditText
         android:id="@+id/et_password"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        style="@style/font_raleway_normal"
         android:padding="5dp"
         android:paddingStart="10dp"
         android:background="@drawable/input_login_shape"
@@ -74,46 +73,71 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
         android:text="Login"
-        android:textStyle="bold"
-        android:textSize="20sp"
+        style="@style/font_raleway_textsemibold"
         android:textAllCaps="false"
-        android:background="@drawable/bg_rounded_4corner"
+        android:background="@color/maincolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/fb_login_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintTop_toBottomOf="@id/btn_login"
+            android:minHeight="40dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:gravity="center"
+            android:drawableLeft="@drawable/ic_facebook"
+            android:layout_marginTop="25dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            >
+
+
+        </com.facebook.login.widget.LoginButton>
+
+        <ImageButton
+            android:id="@+id/gg_login_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@id/fb_login_button"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_google_plus"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/gg_button"
+            android:layout_centerVertical="true"/>
+
+
 
     <TextView
         android:id="@+id/tv_forget_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
+        style="@style/font_raleway_normal"
         android:text="Forget your password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/gg_login_button" />
 
     <TextView
         android:id="@+id/tv_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        style="@style/font_raleway_normal"
         android:text="Don't have an acount, Sign up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_forget_password" />
 
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/fb_login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="30dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginBottom="30dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -154,8 +154,8 @@ public class StatisticsFragment extends Fragment {
 
     private void setChart(BarChart barChart, BarDataSet dataSet) {
         dataSet.setColor(mActivity.getResources().getColor(R.color.red));
-        Typeface raleway = ResourcesCompat.getFont(mActivity, R.font.raleway_semibold);
-        dataSet.setValueTypeface(raleway);
+        //Typeface raleway = ResourcesCompat.getFont(mActivity, R.font.raleway_semibold);
+        //dataSet.setValueTypeface(raleway);
         dataSet.setDrawValues(false);
         BarData data = new BarData(dataSet);
         data.setBarWidth((float) 0.3);

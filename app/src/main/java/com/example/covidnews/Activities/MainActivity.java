@@ -7,6 +7,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
+import com.example.covidnews.Application;
 import com.example.covidnews.Login.LoginActivity;
 import com.example.covidnews.R;
 import com.example.covidnews.fragments.HomeFragment;
@@ -14,6 +15,9 @@ import com.example.covidnews.fragments.MapsFragment;
 import com.example.covidnews.fragments.NewsFragment;
 import com.example.covidnews.fragments.StatisticsFragment;
 import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -45,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final int REQUEST_INTERNET_CODE = 10000;
     private NavigationView sideNav;
     private ImageView menuButton;
+    private GoogleSignInClient googleSignInClient;
+    private GoogleSignInOptions googleSignInOptions;
     private DrawerLayout drawerLayout;
 
     @Override
@@ -54,6 +60,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawerLayout = findViewById(R.id.drawer_layout);
         menuButton = findViewById(R.id.menubar_menu);
         menuButton.setOnClickListener(this);
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        googleSignInClient = GoogleSignIn.getClient(this.getBaseContext(), googleSignInOptions);
+
+
+
         sideNav = findViewById(R.id.nvView);
         sideNav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -73,7 +86,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
                     }
                     case R.id.nav_logout:{
-                        LoginManager.getInstance().logOut();
+                        String type = Application.getPrefranceData("login_type");
+                        if(type == "fb"){
+                            LoginManager.getInstance().logOut();
+                        }
+                        else if(type == "gg"){
+                            googleSignInClient.signOut();
+                        }
+
                         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(intent);
                         finish();

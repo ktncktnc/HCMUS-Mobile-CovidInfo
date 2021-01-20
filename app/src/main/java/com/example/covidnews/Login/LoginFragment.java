@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,13 +25,23 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 public class LoginFragment extends Fragment implements View.OnClickListener{
     private Button btn_login;
     private EditText et_phone_number, et_password;
     private TextView tv_forget_password, tv_sign_up;
     private LoginButton fbloginButton;
+    private ImageButton ggloginButton;
+    private GoogleSignInClient googleSignInClient;
     private CallbackManager callbackManager;
+    private int GG_SIGN_IN_CODE = 1;
     DatabaseHelper db;
     public LoginFragment(){
         // Required empty public constructor
@@ -68,15 +79,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
         et_phone_number = (EditText) view.findViewById(R.id.et_phone_number);
         et_password = (EditText) view.findViewById(R.id.et_password);
-        fbloginButton = view.findViewById(R.id.fb_login_button);
+
         callbackManager = CallbackManager.Factory.create();
-        Log.d("DBG", "Fb login register");
+
+        fbloginButton = view.findViewById(R.id.fb_login_button);
+        fbloginButton.setHeight(400);
         fbloginButton.setFragment(this);
+
         fbloginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+                Application.setPreferences("login_type", "fb");
                 Application.setPreferences("user_id", loginResult.getAccessToken().getUserId());
                 Application.setPreferences("user_avt", loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1");
+
                 Log.d("DBG", "Fb login");
                 Intent intent = new Intent(getActivity().getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -91,6 +107,25 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onError(FacebookException error) {
 
+            }
+        });
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+        if(account != null){
+            Application.setPreferences("login_type", "gg");
+            // Signed in successfully, show authenticated UI.
+            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+        }
+
+        ggloginButton = view.findViewById(R.id.gg_login_button);
+
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        googleSignInClient = GoogleSignIn.getClient(getContext(), googleSignInOptions);
+        ggloginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = googleSignInClient.getSignInIntent();
+                startActivityForResult(intent, GG_SIGN_IN_CODE);
             }
         });
 
@@ -169,6 +204,29 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == GG_SIGN_IN_CODE){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            ggloginHandle(task);
+        }
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+    private void ggloginHandle(Task<GoogleSignInAccount> task) {
+        try {
+            GoogleSignInAccount account = task.getResult(ApiException.class);
+            Application.setPreferences("login_type", "gg");
+
+            // Signed in successfully, show authenticated UI.
+            Application.setPreferences("user_id", account.getId());
+            Application.setPreferences("user_name", account.getDisplayName());
+            Application.setPreferences("user_avt", account.getPhotoUrl().toString());
+            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w("Google Sign In Error", "signInResult:failed code=" + e.getStatusCode());
+
+        }
+    }
+
 }

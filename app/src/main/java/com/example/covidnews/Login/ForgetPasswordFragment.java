@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.covidnews.R;
@@ -17,6 +18,7 @@ import com.example.covidnews.R;
 public class ForgetPasswordFragment extends Fragment{
     Button btn_send;
     EditText et_phone;
+    ImageButton backButton;
 
     public ForgetPasswordFragment(){
         // Required empty public constructor
@@ -59,6 +61,14 @@ public class ForgetPasswordFragment extends Fragment{
                 //navigation to verification code
                 Navigation.findNavController(v).navigate(R.id.action_forgetPasswordFragment_to_verificationCodeFragment);
 
+            }
+        });
+
+        backButton = view.findViewById(R.id.back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
 
