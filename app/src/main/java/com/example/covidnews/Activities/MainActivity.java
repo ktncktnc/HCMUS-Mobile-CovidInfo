@@ -1,20 +1,26 @@
-package com.example.covidnews;
+package com.example.covidnews.Activities;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.os.Bundle;
 
+import com.example.covidnews.R;
 import com.example.covidnews.fragments.HomeFragment;
 import com.example.covidnews.fragments.MapsFragment;
 import com.example.covidnews.fragments.NewsFragment;
 import com.example.covidnews.fragments.StatisticsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -25,16 +31,40 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.util.Log;
 
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
-    BottomNavigationViewEx navigationView;
-    ViewPager2 viewPager2;
-    final int REQUEST_INTERNET_CODE = 10000;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private BottomNavigationViewEx navigationView;
+    private ViewPager2 viewPager2;
+    private final int REQUEST_INTERNET_CODE = 10000;
+    private NavigationView sideNav;
+    private ImageView menuButton;
+    private DrawerLayout drawerLayout;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        menuButton = findViewById(R.id.menubar_menu);
+        menuButton.setOnClickListener(this);
+        sideNav = findViewById(R.id.nvView);
+        sideNav.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.nav_setting:{
+                        Intent myIntent = new Intent(getBaseContext(), SettingActivity.class);
+                        getBaseContext().startActivity(myIntent);
+                        break;
+                    }
+                }
+                return true;
+            }
+        });
         setViewPager();
         setBottomNavigationParams();
         permissionClaim();
@@ -96,6 +126,23 @@ public class MainActivity extends AppCompatActivity {
                  return true;
             };
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.menubar_menu){
+            drawerLayout.openDrawer(GravityCompat.START);
+
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     public class mainViewPagerAdapter extends FragmentStateAdapter{

@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.covidnews.MainActivity;
+import com.example.covidnews.Activities.MainActivity;
 import com.example.covidnews.R;
 
 public class ChangePasswordForgetFragment extends Fragment{

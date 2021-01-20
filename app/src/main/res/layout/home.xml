@@ -52,6 +52,7 @@
                 style="@style/font_raleway_normal"
                 android:textColor="@color/brown"
                 android:layout_marginTop="10dp"
+                android:lineHeight="30sp"
                 app:layout_constraintTop_toBottomOf="@id/infobar_title"
                 android:id="@+id/infobar_des"
                 />
@@ -261,8 +262,9 @@
                     style="@style/font_raleway_normal"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:textColor="@color/brown"
-                    android:lineHeight="25sp"
+                    android:textColor="@color/white"
+                    android:layout_marginRight="15dp"
+                    android:lineHeight="35sp"
                     />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -273,6 +275,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_nurse"
             android:id="@+id/test_image"
+            android:layout_alignParentBottom="true"
             android:layout_marginLeft="20dp"
 
             >

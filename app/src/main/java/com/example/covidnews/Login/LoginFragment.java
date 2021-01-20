@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.covidnews.MainActivity;
+import com.example.covidnews.Activities.MainActivity;
 import com.example.covidnews.R;
 
 public class LoginFragment extends Fragment implements View.OnClickListener{
