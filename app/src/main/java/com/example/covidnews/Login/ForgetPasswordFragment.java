@@ -11,13 +11,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.covidnews.Database.DatabaseHelper;
 import com.example.covidnews.R;
 
 public class ForgetPasswordFragment extends Fragment{
     Button btn_send;
-    EditText et_phone;
+    EditText et_phone;;
+    DatabaseHelper db;
     ImageButton backButton;
 
     public ForgetPasswordFragment(){
@@ -42,7 +45,7 @@ public class ForgetPasswordFragment extends Fragment{
                              Bundle savedInstanceState){
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forget_password, container, false);
-
+        db = new DatabaseHelper(getContext());
         et_phone = (EditText)view.findViewById(R.id.editText_input_phone);
 
         btn_send = (Button) view.findViewById(R.id.btn_send);
@@ -60,6 +63,7 @@ public class ForgetPasswordFragment extends Fragment{
 
                 //navigation to verification code
                 Navigation.findNavController(v).navigate(R.id.action_forgetPasswordFragment_to_verificationCodeFragment);
+                getActivity().getIntent().putExtra("phone_num_forget_pass", _phone);
 
             }
         });
@@ -84,9 +88,12 @@ public class ForgetPasswordFragment extends Fragment{
         if (_phone.length() > 0){
             if (_phone.length() != 10 || _phone.charAt(0) != '0'){
                 Toast.makeText(getContext().getApplicationContext(), "You phone is not correct", Toast.LENGTH_LONG).show();
-                check_phone = false;
+                return false;
             }
         }
-        return check_phone;
+        if (!db.isPhoneNumberExists(_phone))
+            return true;
+        Toast.makeText(getContext().getApplicationContext(), "You phone is not correct", Toast.LENGTH_LONG).show();
+        return  false;
     }
 }

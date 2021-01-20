@@ -72,4 +72,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return cursor.getCount() > 0;
     }
 
+    public  void updatePassword(String phone, String new_pw){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String strSQL = "UPDATE "+TABLE_NAME+" SET "+COLUMN_PASSWORD+" = "+new_pw+" WHERE "+COLUMN_PHONE_NUM+" = "+ phone;
+        db.execSQL(strSQL);
+    }
+
 }
