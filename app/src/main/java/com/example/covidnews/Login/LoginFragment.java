@@ -142,12 +142,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.tv_sign_up:
-                Toast.makeText(getActivity().getApplicationContext(),"Tính năng đang được phát triển!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity().getApplicationContext(),"Tính năng đang được phát triển!", Toast.LENGTH_LONG).show();
                 Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_sighUpFragment);
                 break;
 
             case R.id.tv_forget_password:
-                Toast.makeText(getActivity().getApplicationContext(),"Tính năng đang được phát triển!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity().getApplicationContext(),"Tính năng đang được phát triển!", Toast.LENGTH_LONG).show();
                 Navigation.findNavController(v).navigate(R.id.action_loginFragment_to_forgetPasswordFragment);
                 break;
         }
@@ -194,8 +194,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             Toast.makeText(getContext(), "Login success!",Toast.LENGTH_SHORT).show();
             return  true;
         }
-        else
-            Toast.makeText(getContext(), "Something was wrong!",Toast.LENGTH_SHORT).show();
 
         /*if (_phone.equals("0123456789") && _password.equals("123456"))
             return true;*/
@@ -226,7 +224,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w("Google Sign In Error", "signInResult:failed code=" + e.getStatusCode());
-
+            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
         }
     }
 
